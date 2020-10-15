@@ -4,7 +4,8 @@ class FireBaseText extends StatelessWidget {
   final String hint;
   final bool showText;
   final Function onChanged;
-  FireBaseText({this.hint = "", this.showText = false, this.onChanged});
+  final TextInputType keyboardType;
+  FireBaseText({this.hint = "", this.showText = false, this.onChanged,this.keyboardType=TextInputType.text});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,6 +13,7 @@ class FireBaseText extends StatelessWidget {
       child: TextField(
         obscureText: showText,
         autocorrect: false,
+        keyboardType: keyboardType,
         textCapitalization: TextCapitalization.none,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(20.0),
