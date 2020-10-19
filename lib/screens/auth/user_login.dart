@@ -71,58 +71,61 @@ void userLogin()async{
       appBar: AppBar(
         title: Text('Login'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          FireBaseText(
-            hint: "User Name",
-            onChanged: (value) {
-              username = value;
-            },
-          ),
-          FireBaseText(
-            hint: "Password",
-            showText: true,
-            onChanged: (value) {
-              password = value;
-            },
-          ),
-         loading?CircularProgressIndicator(): RaisedButton(
-             color: Colors.greenAccent,
-             highlightColor: Colors.yellowAccent,
-             onPressed: ()  {
-               userLogin();
-             },
-             child: Container(
-               padding: EdgeInsets.all(20.0),
-               width: MediaQuery.of(context).size.width - 100,
-               decoration: BoxDecoration(
-                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
-               ),
-               child: Text(
-                 'Login',
-                 textAlign: TextAlign.center,
-                 style: TextStyle(color: Colors.black26),
-               ),
-             )),
+      body: SingleChildScrollView(
 
-
-          GestureDetector(
-            onTap: (){
-              Navigator.pushNamed(context, UserRegistration.id);
-            },
-            child: Container(
-              margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                    child: Text('Create Account? ')),
-              ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FireBaseText(
+              hint: "User Name",
+              onChanged: (value) {
+                username = value;
+              },
             ),
-          )
+            FireBaseText(
+              hint: "Password",
+              showText: true,
+              onChanged: (value) {
+                password = value;
+              },
+            ),
+           loading?CircularProgressIndicator(): RaisedButton(
+               color: Colors.greenAccent,
+               highlightColor: Colors.yellowAccent,
+               onPressed: ()  {
+                 userLogin();
+               },
+               child: Container(
+                 padding: EdgeInsets.all(20.0),
+                 width: MediaQuery.of(context).size.width - 100,
+                 decoration: BoxDecoration(
+                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                 ),
+                 child: Text(
+                   'Login',
+                   textAlign: TextAlign.center,
+                   style: TextStyle(color: Colors.black26),
+                 ),
+               )),
 
 
-        ],
+            GestureDetector(
+              onTap: (){
+                Navigator.pushNamed(context, UserRegistration.id);
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                      child: Text('Create Account? ')),
+                ),
+              ),
+            )
+
+
+          ],
+        ),
       ),
     );
   }

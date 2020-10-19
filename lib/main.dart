@@ -3,11 +3,13 @@ import 'package:fbdemo03/screens/auth/user_login.dart';
 import 'package:fbdemo03/screens/dashboard/home_screen.dart';
 import 'package:fbdemo03/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseApp app = await Firebase.initializeApp();
+  await PushNotificationsManager().init();
   runApp(MyApp());
 }
 
@@ -37,3 +39,36 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+
+class PushNotificationsManager {
+
+  PushNotificationsManager._();
+
+  factory PushNotificationsManager() => _instance;
+
+  static final PushNotificationsManager _instance = PushNotificationsManager._();
+
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  bool _initialized = false;
+
+  Future<void> init() async {
+    if (!_initialized) {
+      // For iOS request permission first.
+      _firebaseMessaging.requestNotificationPermissions();
+      _firebaseMessaging.configure();
+
+
+      // For testing purposes print the Firebase Messaging token
+      String token = await _firebaseMessaging.getToken();
+      print('token: $token');
+
+      _initialized = true;
+
+
+
+
+
+    }
+  }
+}
